@@ -20,25 +20,17 @@ class Client (Base_Client.BaseClient):
             exit(0)
 
 
-       # print(response.text)
+        #print(response.text)
         # todo выполнить запрос
 
         return self.response_handler(response) #вывод результата
 
     def find_id(self,ss):
+        id_list = ss.get("response")
+        id = id_list[0].get("uid")
+        return str(id)
 
-        id = ''
-        for i in range(len(ss)):
-            if (ss[i] == 'u' and ss[i + 1] == 'i' and ss[i + 2] == 'd'):
-                for j in range(len(ss)):
-                    if ss[i + j + 5] == ',':
-                        break
-                    id = id + ss[i + j + 5]
-                break
-        return id
-
-    def build_gist(self, ss):
-        qq = ss.json()
+    def build_gist(self, qq):
         dict_age = {0: 0}
         # ****
         try:
